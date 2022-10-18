@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('welcome.index') }}">
         <div class="sidebar-brand-icon">
             <img style="width: 100%;" src="{{ asset('laracamp/icon.png') }}" alt="Laracamp">
         </div>
@@ -15,9 +15,10 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('welcome.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->
@@ -55,7 +56,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori Bootcamp</a>
-                <a class="collapse-item" href="#">Kelas Bootcamp</a>
+                <a class="collapse-item" href="{{ route('bootcamp.index') }}">Kelas Bootcamp</a>
                 <a class="collapse-item" href="#">Transaksi</a>
             </div>
         </div>

@@ -1,5 +1,7 @@
 @extends('template.base')
 
+@section('title', 'Dashboard')
+
 @section('content')
 
     <!-- Page Heading -->

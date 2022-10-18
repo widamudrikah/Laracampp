@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
+
     public function index()
     {
         $kategori = Kategori::all();
@@ -37,5 +38,12 @@ class KategoriController extends Controller
         $kategori->update();
 
         return redirect()->back()->with('Ok','Berhasil Update Data !');
+    }
+
+    public function destroy(Request $request)
+    {
+        $kategori = Kategori::findOrFail($request->id);
+        $kategori->delete();
+        return redirect()->back()->with('Ok','Berhasil Delete Data !');
     }
 }

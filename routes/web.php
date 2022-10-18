@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\BootcampController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Template\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +24,29 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/welcome', [App\Http\Controllers\Template\DashboardController::class, 'index'])->name('welcome.index');
 
-Route::controller(KategoriController::class)->group(function(){
-    Route::get('kategori', 'index')->name('kategori.index');
-    Route::post('kategori/store', 'store')->name('kategori.store');
-    Route::put('kategori/update', 'update')->name('kategori.update');
+
+// Akses Admin
+Route::prefix('a')->middleware('auth')->group(function(){
+    Route::controller(DashboardController::class)->group(function(){
+        Route::get('welcome', 'index')->name('welcome.index');
+    });
+    Route::controller(KategoriController::class)->group(function(){
+        Route::get('kategori', 'index')->name('kategori.index');
+        Route::post('kategori/store', 'store')->name('kategori.store');
+        Route::put('kategori/update', 'update')->name('kategori.update');
+        Route::delete('kategori/destroy', 'destroy')->name('kategori.destroy');
+    });
+    Route::controller(BootcampController::class)->group(function(){
+        Route::get('bootcamp', 'index')->name('bootcamp.index');
+        Route::get('bootcamp/baru', 'create')->name('bootcamp.create');
+    });
 });
+// End Akses Admin
 
+// Akses Peserta
+Route::prefix('p')->middleware('auth')->group(function(){
+    
+});
+// End Akses Peserta
 

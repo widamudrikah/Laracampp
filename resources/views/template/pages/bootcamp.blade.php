@@ -1,19 +1,19 @@
 @extends('template.base')
 
-@section('title', 'Kategori Bootcamp')
+@section('title', 'Kelas Bootcamp')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Kategori</h1>
+        <h1 class="h3 mb-0 text-gray-800">Bootcamp</h1>
     </div>
 
-     <div class="card shadow mb-4">
+    <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Kategori Bootcamp</h6>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal2">
-                + Kategori
-            </button>
+            <h6 class="m-0 font-weight-bold text-primary">Kelas Bootcamp</h6>
+            <a href="{{ route('bootcamp.create') }}" class="btn btn-primary btn-sm">
+                + Kelas
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,32 +25,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="30%">Nama Kategori</th>
-                            <th width="30%">Slug</th>
+                            <th>Thumbnail</th>
+                            <th>Nama Bootcamp</th>
+                            <th>Harga</th>
+                            <th>Deskripsi</th>
+                            <th>Kuota</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
                             <th>Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kategori as $row)
-                        <tr>
-                            <td>{{ $row->nama_kategori }}</td>
-                            <td>{{ $row->slug }}</td>
-                            <td>
-                                <a href="#" data-toggle="modal" data-target="#edit{{ $row->id }}" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
-                                <a href="#" data-toggle="modal" data-target="#delete{{ $row->id }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        @include('template.modal.kategori.edit')
-                        @include('template.modal.kategori.delete')
-                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
      </div>
-
-    <!-- Modal Tambah Data-->
-    @include('template.modal.kategori.tambah')
 
 @endsection
 
