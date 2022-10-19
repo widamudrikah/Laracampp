@@ -17,7 +17,8 @@
         </div>
         <div class="card-body">
         
-        <form>
+        <form action="{{ route('bootcamp.store') }}" method="POST">
+            @csrf 
             
             <div class="row">
                 <div class="col-md-6">

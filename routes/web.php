@@ -40,6 +40,7 @@ Route::prefix('a')->middleware('auth')->group(function(){
     Route::controller(BootcampController::class)->group(function(){
         Route::get('bootcamp', 'index')->name('bootcamp.index');
         Route::get('bootcamp/baru', 'create')->name('bootcamp.create');
+        Route::post('bootcamp/store', 'store')->name('bootcamp.store');
     });
 });
 // End Akses Admin
