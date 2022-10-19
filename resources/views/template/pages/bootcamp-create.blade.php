@@ -19,18 +19,28 @@
         
         <form action="{{ route('bootcamp.store') }}" method="POST">
             @csrf 
-            
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama_bootcamp">Nama Bootcamp</label>
-                        <input type="text" name="nama_bootcamp" class="form-control" id="nama_bootcamp">
+                        <input type="text" value="{{old('nama_bootcamp')}}" name="nama_bootcamp" class="form-control @error('nama_bootcamp') is-invalid @enderror" id="nama_bootcamp">
+                        @error('nama_bootcamp')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>                            
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="harga">Harga</label>
-                        <input type="number" name="harga" class="form-control" id="harga">
+                        <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror" id="harga">
+                        @error('harga')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>                            
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -39,18 +49,28 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kategori_id">Kategori Bootcamp</label>
-                        <select class="custom-select" name="kategori_id" id="kategori_id">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select @error('kategori_id') is-invalid @enderror" name="kategori_id" id="kategori_id">
+                            <option value="">Pilih Kategori</option>
+                            @foreach($kategori as $row)
+                            <option value="1">{{ $row->nama_kategori }}</option>
+                            @endforeach
                         </select>
+                        @error('kategori_id')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>                            
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kuota">Kuota</label>
-                        <input type="number" name="kuota" class="form-control" id="kuota">
+                        <input type="number" name="kuota" class="form-control @error('kuota') is-invalid @enderror" id="kuota">
+                        @error('kuota')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>                            
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -59,13 +79,23 @@
                 <label for="thumbnail">Thumbnail Bootcamp</label>
                 <div class="custom-file" id="thumbnail">
                     <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <input type="file" name="thumbnail" class="custom-file-input @error('thumbnail') is-invalid @enderror" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    @error('thumbnail')
+                    <div class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                    </div>                            
+                    @enderror
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="deskripsi">Deskripsi</label>
+                <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" rows="3"></textarea>
+                @error('deskripsi')
+                <div class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                </div>                            
+                @enderror
             </div>
             
             

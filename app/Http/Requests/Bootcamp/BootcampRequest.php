@@ -13,7 +13,7 @@ class BootcampRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,25 @@ class BootcampRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_bootcamp' => 'required',
+            'kategori_id'               => 'required',
+            'nama_bootcamp'             => 'required',
+            'harga'                     => 'required',
+            'kuota'                     => 'required',
+            'deskripsi'                 => 'required',
+            'thumbnail'                 => 'required',
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'kategori_id.required'      => 'Pilih kategori bootcamp',
+            'nama_bootcamp.required'    => 'Masukkan nama kelas bootcamp',
+            'harga.required'            => 'Masukkan harga bootcamp',
+            'kuota.required'            => 'Masukkan kuota bootcamp',
+            'deskripsi.required'        => 'Masukkan deskripsi bootcamp',
+            'thumbnail.required'        => 'Upload thumbnail bootcamp',
+        ];
+        
     }
 }
