@@ -41,6 +41,7 @@ Route::prefix('a')->middleware('auth')->group(function(){
         Route::get('bootcamp', 'index')->name('bootcamp.index');
         Route::get('bootcamp/baru', 'create')->name('bootcamp.create');
         Route::post('bootcamp/store', 'store')->name('bootcamp.store');
+        Route::delete('bootcamp/destroy', 'destroy')->name('bootcamp.destroy');
     });
 });
 // End Akses Admin

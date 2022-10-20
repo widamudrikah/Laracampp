@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
         
-        <form action="{{ route('bootcamp.store') }}" method="POST">
+        <form action="{{ route('bootcamp.store') }}" method="POST" enctype="multipart/form-data">
             @csrf 
 
             <div class="row">
@@ -35,7 +35,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="harga">Harga</label>
-                        <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror" id="harga">
+                        <input type="number" name="harga" value="{{old('harga')}}" class="form-control @error('harga') is-invalid @enderror" id="harga">
                         @error('harga')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
                         <select class="custom-select @error('kategori_id') is-invalid @enderror" name="kategori_id" id="kategori_id">
                             <option value="">Pilih Kategori</option>
                             @foreach($kategori as $row)
-                            <option value="1">{{ $row->nama_kategori }}</option>
+                            <option value="{{ $row->id }}" {{ old('kategori_id') == $row->id ? 'selected' : '' }}>{{ $row->nama_kategori }}</option>
                             @endforeach
                         </select>
                         @error('kategori_id')
@@ -65,7 +65,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kuota">Kuota</label>
-                        <input type="number" name="kuota" class="form-control @error('kuota') is-invalid @enderror" id="kuota">
+                        <input type="number" name="kuota" value="{{old('kuota')}}" class="form-control @error('kuota') is-invalid @enderror" id="kuota">
                         @error('kuota')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
 
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" rows="3"></textarea>
+                <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" rows="3">{{old('deskripsi')}}</textarea>
                 @error('deskripsi')
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
