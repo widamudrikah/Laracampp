@@ -26,8 +26,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-// Akses Admin
-Route::prefix('a')->middleware('auth')->group(function(){
+// Akses Admin = 1
+Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
     Route::controller(DashboardController::class)->group(function(){
         Route::get('welcome', 'index')->name('welcome.index');
     });
@@ -46,9 +46,19 @@ Route::prefix('a')->middleware('auth')->group(function(){
 });
 // End Akses Admin
 
-// Akses Peserta
-Route::prefix('p')->middleware('auth')->group(function(){
-    
+// Akses Mentor = 2
+Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
+    Route::get('/welcome', function () {
+        echo "Selamat Datang Mentor Bootcamp";
+    });
+});
+// End Akses Mentor
+
+// Akses Peserta = 3
+Route::prefix('p')->middleware(['auth','isPeserta'])->group(function(){
+    Route::get('/welcome', function () {
+        echo "Selamat Datang Peserta Bootcamp";
+    });
 });
 // End Akses Peserta
 

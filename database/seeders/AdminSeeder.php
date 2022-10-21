@@ -24,6 +24,20 @@ class AdminSeeder extends Seeder
                 'password'      => Hash::make("1234"),
                 'role'          => 1
             ),
+            array(
+                'name'          => 'Mentor',
+                'username'      => 'mentor',
+                'email'         => 'mentor@gmail.com',
+                'password'      => Hash::make("1234"),
+                'role'          => 2
+            ),
+            array(
+                'name'          => 'Peserta',
+                'username'      => 'peserta',
+                'email'         => 'peserta@gmail.com',
+                'password'      => Hash::make("1234"),
+                'role'          => 3
+            ),
         ));
     }
 }
