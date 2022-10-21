@@ -7,6 +7,7 @@ use App\Http\Requests\Bootcamp\BootcampRequest;
 use App\Models\Bootcamp;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BootcampController extends Controller
@@ -49,7 +50,11 @@ class BootcampController extends Controller
 
     public function destroy(Request $request)
     {
-        
+        // dd($request->all());
+        $bootcamp = Bootcamp::findOrFail($request->id);  // Cari data
+        Storage::delete($bootcamp->thumbnail); // Hapus file directory system
+        $bootcamp->delete(); // Hapus data di database
+        return redirect()->back();
     }
     
 }

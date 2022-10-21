@@ -43,7 +43,7 @@
                             </td>
                             <td>{{ $row->nama_bootcamp }}</td>
                             <td>{{ $row->harga }}</td>
-                            <td>{{ $row->deskripsi }}</td>
+                            <td>{!! $row->deskripsi !!}</td>
                             <td>{{ $row->kuota }}</td>
                             <td>{{ $row->kategori->nama_kategori }}</td>
                             <td>

@@ -106,3 +106,10 @@
      </div>
 
 @endsection
+
+@section('ckeditor')
+    <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'deskripsi' );
+    </script>
+@endsection

@@ -118,6 +118,7 @@
     <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
 
     @yield('script')
+    @yield('ckeditor')
 
 </body>
 
