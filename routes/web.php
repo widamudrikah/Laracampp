@@ -2,29 +2,26 @@
 
 use App\Http\Controllers\Admin\BootcampController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Mentor\MentorController;
+use App\Http\Controllers\Peserta\PesertaController;
 use App\Http\Controllers\Template\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::controller(FrontController::class)->group(function(){
+    Route::get('/', 'index')->name('front.index');
+    Route::get('/bootcamps', 'bootcamps')->name('front.bootcamps');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 // Akses Admin = 1
 Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
@@ -48,16 +45,16 @@ Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
 
 // Akses Mentor = 2
 Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
-    Route::get('/welcome', function () {
-        echo "Selamat Datang Mentor Bootcamp";
+    Route::controller(MentorController::class)->group(function(){
+        Route::get('welcome', 'index')->name('mentor.index');
     });
 });
 // End Akses Mentor
 
 // Akses Peserta = 3
 Route::prefix('p')->middleware(['auth','isPeserta'])->group(function(){
-    Route::get('/welcome', function () {
-        echo "Selamat Datang Peserta Bootcamp";
+    Route::controller(PesertaController::class)->group(function(){
+        Route::get('welcome', 'index')->name('peserta.index');
     });
 });
 // End Akses Peserta
