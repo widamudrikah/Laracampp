@@ -13,5 +13,10 @@ class Kategori extends Model
         'nama_kategori',
         'slug',
     ];
+
+    public function bootcamps()
+    {
+        return $this->hasMany(Bootcamp::class, 'kategori_id', 'id');
+    }
     
 }

@@ -1,4 +1,6 @@
-
+<?php
+     $kategori =  App\Models\Kategori::all();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +49,9 @@
                                 Kategori
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Semua Bootcamps</a></li>
-                                <li><a class="dropdown-item" href="#">Per Kategori</a></li>
+                                @foreach($kategori as $row)
+                                    <li><a class="dropdown-item" href="{{ route('front.kategori.bootcamp', $row->slug) }}">{{ $row->nama_kategori }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
 

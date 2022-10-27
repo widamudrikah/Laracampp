@@ -18,6 +18,7 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/', 'index')->name('front.index');
     Route::get('/bootcamps', 'bootcamps')->name('front.bootcamps');
     Route::get('/bootcamps/detail/{slug}', 'detail_bootcamp')->name('front.detail.bootcamp');
+    Route::get('/bootcamps/kategori/{slug}', 'kategori_bootcamp')->name('front.kategori.bootcamp');
 });
 // End Akses Tamu
 

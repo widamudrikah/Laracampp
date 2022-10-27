@@ -19,7 +19,7 @@
             <div class="col-md-6 left-content">              
                 <div class="p-5">
                     <div class="video">
-                        <img class="img-fluid" src="{{ asset('laracamp/images/item.png') }}" alt="View Video">
+                        <img style="width: 368px; height: 255px; border-radius:20px;" class="img-fluid" src="{{ asset('storage/'.$bootcamp->thumbnail) }}" alt="{{ $bootcamp->nama_bootcamp }}">
                     </div>   
                     <div class="desc">
                         <span>{{ $bootcamp->nama_bootcamp }}</span>
@@ -34,32 +34,32 @@
                 <form class="mt-4">
                     <div class="mb-3 inputan">
                         <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="febryan1453@gmail.com" aria-describedby="emailHelp">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3 inputan">
                         <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" value="Febryan">
+                        <input type="text" name="nama" class="form-control" id="fullName">
                     </div>
                     <div class="mb-3 inputan">
                         <label for="Occupation" class="form-label">Occupation</label>
-                        <input type="text" class="form-control" id="Occupation" value="Web Developer">
+                        <input type="text" name="pekerjaan" class="form-control" id="Occupation">
                     </div>
                     <div class="mb-3 inputan">
                         <label for="CardNumber" class="form-label">Card Number</label>
-                        <input type="text" class="form-control" id="CardNumber" value="082191170349">
+                        <input type="text" name="rekening" class="form-control" id="CardNumber">
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 inputan-2">
                             <div class="mb-3">
                                 <label for="Expired" class="form-label">Expired</label>
-                                <input type="text" class="form-control" id="Expired" value="01/2024">
+                                <input type="text" name="expired" class="form-control" id="Expired" placeholder="Contoh: 01/2024">
                             </div>
                         </div>
                         <div class="col-md-3 inputan-2">
                             <div class="mb-3 jarak">
                                 <label for="cvc" class="form-label">CVC</label>
-                                <input type="text" class="form-control" id="cvc" value="220">
+                                <input type="text" name="cvc" class="form-control" id="cvc" placeholder="Contoh: 220">
                             </div>
                         </div>
                     </div>
