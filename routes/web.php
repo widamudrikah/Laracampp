@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BootcampController;
+use App\Http\Controllers\Admin\CrudMentorController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Mentor\MentorController;
@@ -39,6 +40,11 @@ Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('bootcamp/baru', 'create')->name('bootcamp.create');
         Route::post('bootcamp/store', 'store')->name('bootcamp.store');
         Route::delete('bootcamp/destroy', 'destroy')->name('bootcamp.destroy');
+    });
+    Route::controller(CrudMentorController::class)->group(function(){
+        Route::get('mentor', 'index')->name('crud.mentor.index');
+        Route::get('mentor/baru', 'create')->name('crud.mentor.create');
+        Route::post('mentor/store', 'store')->name('crud.mentor.store');
     });
 });
 // End Akses Admin

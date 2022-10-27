@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Bootcamp\BootcampRequest;
 use App\Models\Bootcamp;
 use App\Models\Kategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,8 +27,10 @@ class BootcampController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
+        $mentor   = User::where('role',2)->get();
         return view('template.pages.bootcamp-create',[
             'kategori'  => $kategori,
+            'mentor'    => $mentor,
         ]);
     }
 
@@ -37,6 +40,7 @@ class BootcampController extends Controller
 
         Bootcamp::create([
             'kategori_id'       => $request->kategori_id,
+            'mentor_id'         => $request->mentor_id,
             'nama_bootcamp'     => $request->nama_bootcamp,
             'slug'              => Str::slug($request->nama_bootcamp),
             'harga'             => $request->harga,

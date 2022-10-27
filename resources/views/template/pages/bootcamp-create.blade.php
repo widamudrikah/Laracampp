@@ -48,6 +48,22 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for="mentor_id">Mentor Bootcamp</label>
+                        <select class="custom-select @error('mentor_id') is-invalid @enderror" name="mentor_id" id="mentor_id">
+                            <option value="">Pilih Mentor</option>
+                            @foreach($mentor as $row)
+                            <option value="{{ $row->id }}" {{ old('mentor_id') == $row->id ? 'selected' : '' }}>{{ $row->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('mentor_id')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>                            
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label for="kategori_id">Kategori Bootcamp</label>
                         <select class="custom-select @error('kategori_id') is-invalid @enderror" name="kategori_id" id="kategori_id">
                             <option value="">Pilih Kategori</option>
@@ -62,6 +78,23 @@
                         @enderror
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="thumbnail">Thumbnail Bootcamp</label>
+                        <div class="custom-file" id="thumbnail">
+                            <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
+                            <input type="file" name="thumbnail" class="custom-file-input @error('thumbnail') is-invalid @enderror" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                            @error('thumbnail')
+                            <div class="invalid-feedback">
+                                <strong>{{ $message }}</strong>
+                            </div>                            
+                            @enderror
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kuota">Kuota</label>
@@ -73,20 +106,7 @@
                         @enderror
                     </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="thumbnail">Thumbnail Bootcamp</label>
-                <div class="custom-file" id="thumbnail">
-                    <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
-                    <input type="file" name="thumbnail" class="custom-file-input @error('thumbnail') is-invalid @enderror" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                    @error('thumbnail')
-                    <div class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
-                    </div>                            
-                    @enderror
-                </div>
-            </div>
+            </div>            
 
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>

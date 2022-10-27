@@ -11,6 +11,7 @@ class Bootcamp extends Model
     // protected $guarded = [];
     protected $fillable = [
         'kategori_id',
+        'mentor_id',
         'nama_bootcamp',
         'slug',
         'harga',
@@ -23,5 +24,10 @@ class Bootcamp extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
+    }
+
+    public function mentor()
+    {
+        return $this->belongsTo(User::class, 'mentor_id', 'id');
     }
 }

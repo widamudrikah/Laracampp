@@ -25,6 +25,7 @@ class BootcampRequest extends FormRequest
     {
         return [
             'kategori_id'               => 'required',
+            'mentor_id'                 => 'required',
             'nama_bootcamp'             => 'required|unique:bootcamps',
             'harga'                     => 'required',
             'kuota'                     => 'required',
@@ -37,6 +38,7 @@ class BootcampRequest extends FormRequest
     {
         return [
             'kategori_id.required'      => 'Pilih kategori bootcamp',
+            'mentor_id.required'        => 'Pilih mentor bootcamp',
             'nama_bootcamp.required'    => 'Masukkan nama kelas bootcamp',
             'nama_bootcamp.unique'      => 'Kelas bootcamp sudah ada',
             'harga.required'            => 'Masukkan harga bootcamp',

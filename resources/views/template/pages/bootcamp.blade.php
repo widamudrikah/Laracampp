@@ -41,7 +41,11 @@
                             <td>
                                 <img src="{{ asset('storage/'.$row->thumbnail) }}" alt="{{ $row->nama_bootcamp }}" class="img-fluid">
                             </td>
-                            <td>{{ $row->nama_bootcamp }}</td>
+                            <td>
+                                {{ $row->nama_bootcamp }}
+                                <br>
+                                Mentor: {{ $row->mentor->name }}
+                            </td>
                             <td>{{ $row->harga }}</td>
                             <td>{!! $row->deskripsi !!}</td>
                             <td>{{ $row->kuota }}</td>

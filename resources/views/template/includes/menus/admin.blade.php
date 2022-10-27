@@ -11,7 +11,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="#">Admin</a>
-                <a class="collapse-item" href="#">Mentor</a>
+                <a class="collapse-item" href="{{ route('crud.mentor.index') }}">Mentor</a>
                 <a class="collapse-item" href="#">Peserta</a>
             </div>
         </div>
