@@ -11,18 +11,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
+
+// Akses Tamu : Login atau tidak login itu bisa lihat halaman depan
 Route::controller(FrontController::class)->group(function(){
     Route::get('/', 'index')->name('front.index');
     Route::get('/bootcamps', 'bootcamps')->name('front.bootcamps');
+    Route::get('/bootcamps/detail/{slug}', 'detail_bootcamp')->name('front.detail.bootcamp');
 });
+// End Akses Tamu
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Akses Admin = 1
 Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
@@ -64,4 +63,12 @@ Route::prefix('p')->middleware(['auth','isPeserta'])->group(function(){
     });
 });
 // End Akses Peserta
+
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
