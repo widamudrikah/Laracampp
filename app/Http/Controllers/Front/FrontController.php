@@ -39,4 +39,9 @@ class FrontController extends Controller
             'kategori' => $kategori,
         ]);
     }
+
+    public function daftar_bootcamp()
+    {
+        
+    }
 }

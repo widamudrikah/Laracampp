@@ -31,7 +31,8 @@
             </div>
 
             <div class="col-md-6 right-content d-flex justify-content-center">
-                <form class="mt-4">
+                <form class="mt-4" action="{{ route('front.daftar.bootcamp') }}" method="POST">
+                    @csrf
                     <div class="mb-3 inputan">
                         <label for="exampleInputEmail1" class="form-label">Email Address</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
