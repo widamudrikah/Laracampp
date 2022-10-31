@@ -64,10 +64,21 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Play Now</button>
-                    <p class="pay">
-                        Your payment is secure and encrypted.
-                    </p>
+                    @guest
+                        <!-- Jika Belum Login -->
+                        <a href="#" class="btn btn-primary">Login Dulu</a>
+                    @else
+                        @if(Auth::user()->role == 3)
+                            <!-- Setelah Login -->
+                            <button type="submit" class="btn btn-primary">Play Now</button>
+                            <p class="pay">
+                                Your payment is secure and encrypted.
+                            </p>
+                        @else
+                            <button type="button" class="btn btn-primary">Anda Tidak Bisa Daftar</button>
+                        @endif                        
+                    @endguest
+
                 </form>
             </div>
 

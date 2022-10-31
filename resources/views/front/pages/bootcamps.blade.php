@@ -4,7 +4,7 @@
 
 @section('content')
 
- <!-- Dashboard -->
+    <!-- Dashboard -->
     <section class="container dashboard">
         <div class="text-center">
             <span>BOOTCAMPS</span>

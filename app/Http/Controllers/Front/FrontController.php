@@ -34,6 +34,9 @@ class FrontController extends Controller
     {
         $kategori = Kategori::where('slug', $slug)->first();
         $bootcamp = Bootcamp::where('kategori_id', $kategori->id)->get();
-        return $bootcamp;
+        return view('front.pages.per-kategori',[
+            'bootcamp' => $bootcamp,
+            'kategori' => $kategori,
+        ]);
     }
 }
