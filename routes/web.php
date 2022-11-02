@@ -62,6 +62,7 @@ Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
 Route::prefix('p')->middleware(['auth','isPeserta'])->group(function(){
     Route::controller(PesertaController::class)->group(function(){
         Route::get('welcome', 'index')->name('peserta.index');
+        Route::get('success_checkout', 'success_checkout')->name('peserta.success');
     });
 });
 // End Akses Peserta

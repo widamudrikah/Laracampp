@@ -33,6 +33,11 @@
             <div class="col-md-6 right-content d-flex justify-content-center">
                 <form class="mt-4" action="{{ route('front.daftar.bootcamp') }}" method="POST">
                     @csrf
+
+                    <input type="hidden" value="{{ $bootcamp->id }}" name="bootcamp_id">
+                    <input type="hidden" value="{{ Auth::user()->peserta->id }}" name="peserta_id">
+                    <input type="hidden" value="{{ $bootcamp->harga }}" name="harga">
+
                     <div class="mb-3 inputan">
                         <label for="exampleInputEmail1" class="form-label">Email Address</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

@@ -12,6 +12,7 @@ class Transaksi extends Model
     protected $fillable = [
         'peserta_id',
         'bootcamp_id',
+        'kode_trx',
         'nama',
         'email',
         'pekerjaan',
@@ -19,6 +20,8 @@ class Transaksi extends Model
         'expired',
         'cvc',
         'status',
+        'total_harga',
+        'kode_unik',
     ];
 
 }
