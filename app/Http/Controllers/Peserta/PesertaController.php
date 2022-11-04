@@ -25,4 +25,20 @@ class PesertaController extends Controller
     {
         return view('template.pages.peserta.success-checkout');
     }
+
+    public function transaksi()
+    {
+        $transaksi = Transaksi::where('peserta_id', Auth::user()->peserta->id)->get();
+        return view('template.pages.peserta.transaksi',[
+            'transaksi'    => $transaksi,
+        ]);
+    }
+
+    public function my_bootcamp()
+    {
+        $trx = Transaksi::where('peserta_id', Auth::user()->peserta->id)->get();
+        return view('template.pages.peserta.my-bootcamp',[
+            'trx' => $trx,
+        ]);
+    }
 }

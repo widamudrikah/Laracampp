@@ -20,7 +20,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Kelas Bootcamp</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">123</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $sukses }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-fw fa-chalkboard-teacher fa-2x text-gray-300"></i>

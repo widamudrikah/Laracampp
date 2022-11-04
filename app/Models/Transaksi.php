@@ -24,4 +24,9 @@ class Transaksi extends Model
         'kode_unik',
     ];
 
+    public function bootcamp()
+    {
+        return $this->belongsTo(Bootcamp::class,'bootcamp_id','id');
+    }
+
 }
