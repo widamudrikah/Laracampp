@@ -3,7 +3,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('mentor.my.bootcamp') }}">
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>Kelas Bootcamp</span>
         </a>

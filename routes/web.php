@@ -55,6 +55,7 @@ Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
     Route::controller(MentorController::class)->group(function(){
         Route::get('welcome', 'index')->name('mentor.index');
         Route::get('my_bootcamp', 'my_bootcamp')->name('mentor.my.bootcamp');
+        Route::get('peserta_bootcamp/{id}', 'peserta_bootcamp')->name('mentor.my.peserta');
     });
 });
 // End Akses Mentor
