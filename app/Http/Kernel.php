@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'isAdmin'   => \App\Http\Middleware\AdminMiddleware::class,
         'isMentor'   => \App\Http\Middleware\MentorMiddleware::class,
         'isPeserta'   => \App\Http\Middleware\PesertaMiddleware::class,
+        'blokir'   => \App\Http\Middleware\BlokirMiddleware::class,
     ];
 }

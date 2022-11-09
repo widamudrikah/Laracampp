@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BootcampController;
 use App\Http\Controllers\Admin\CrudMentorController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Mentor\MentorController;
 use App\Http\Controllers\Peserta\PesertaController;
@@ -29,6 +30,8 @@ Auth::routes();
 Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
     Route::controller(DashboardController::class)->group(function(){
         Route::get('welcome', 'index')->name('welcome.index');
+        Route::get('admin', 'list_admin')->name('welcome.list.admin');
+        Route::get('peserta', 'list_peserta')->name('welcome.list.peserta');
     });
     Route::controller(KategoriController::class)->group(function(){
         Route::get('kategori', 'index')->name('kategori.index');
@@ -47,11 +50,15 @@ Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('mentor/baru', 'create')->name('crud.mentor.create');
         Route::post('mentor/store', 'store')->name('crud.mentor.store');
     });
+    Route::controller(TransaksiController::class)->group(function(){
+        Route::get('transaksi', 'index')->name('transaksi.index');
+        Route::post('transaksi/status/update', 'status_update')->name('transaksi.status.update');
+    });
 });
 // End Akses Admin
 
 // Akses Mentor = 2
-Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
+Route::prefix('m')->middleware(['auth','isMentor','blokir'])->group(function(){
     Route::controller(MentorController::class)->group(function(){
         Route::get('welcome', 'index')->name('mentor.index');
         Route::get('my_bootcamp', 'my_bootcamp')->name('mentor.my.bootcamp');
@@ -61,7 +68,7 @@ Route::prefix('m')->middleware(['auth','isMentor'])->group(function(){
 // End Akses Mentor
 
 // Akses Peserta = 3
-Route::prefix('p')->middleware(['auth','isPeserta'])->group(function(){
+Route::prefix('p')->middleware(['auth','isPeserta','blokir'])->group(function(){
     Route::controller(PesertaController::class)->group(function(){
         Route::get('welcome', 'index')->name('peserta.index');
         Route::get('success_checkout', 'success_checkout')->name('peserta.success');

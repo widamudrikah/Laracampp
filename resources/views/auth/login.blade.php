@@ -1,73 +1,75 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Laracamp</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('laracamp/css/bootstrap.min.css') }}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <!-- Custome MyCss -->
+    <link rel="stylesheet" href="{{ asset('laracamp/mycss/style.css') }}">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+  </head>
+  <body class="body-auth">
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <div class="row m-0 h-100 content">
+        
+        <div class="col p-0 d-flex justify-content-center align-items-center content-left">
+            <img src="{{ asset('laracamp/images/ill_login_new.png') }}" class="img-fluid">
         </div>
+
+        <div class="col p-0 content-right">
+
+            <div class="authentication">
+                <a href="/">
+                    <img src="{{ asset('laracamp/images/logo.png') }}" alt="Brand Logo" class="img-fluid">
+                </a>
+                <h2 class="start">Start Today</h2>
+                <!-- <p class="desc-start">Because tomorrow become never</p> -->
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="mb-3 inputan">
+                        <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">                        
+                        @error('email')
+                            <div id="emailHelp" role="alert" class="form-text error invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3 inputan">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1">
+                        @error('password')
+                        <div id="exampleInputPassword1" role="alert" class="form-text error invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="text-center mt-3" style="margin-bottom: 100px;">
+                        <a href="{{ route('register') }}">Register</a>
+                    </div>
+                </form>
+                
+
+            </div>
+
+        </div>
+
     </div>
-</div>
-@endsection
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="{{ asset('laracamp/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

@@ -1,18 +1,18 @@
 @extends('template.base')
 
-@section('title', 'Mentor Bootcamp')
+@section('title', 'Peserta Bootcamp')
 
 @section('content')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Mentor</h1>
+        <h1 class="h3 mb-0 text-gray-800">Peserta</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Mentor Bootcamp</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Peserta Bootcamp</h6>
             <a href="{{ route('crud.mentor.create') }}" class="btn btn-primary btn-sm">
-                + Mentor
+                + Peserta
             </a>
         </div>
         <div class="card-body">
@@ -26,14 +26,14 @@
                     <thead>
                         <tr>
                             <th width="10%">Photo</th>
-                            <th>Nama Mentor</th>
+                            <th>Nama Peserta</th>
                             <th>Username</th>
                             <th>Alamat Email</th>
                             <th>Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($mentor as $row)
+                        @foreach($peserta as $row)
                         <tr>
                             <td>
                                 <img src="{{ asset('storage/'.$row->images) }}" alt="{{ $row->name }}" class="img-fluid">

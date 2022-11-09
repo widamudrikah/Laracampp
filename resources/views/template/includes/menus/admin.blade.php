@@ -10,9 +10,9 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Admin</a>
+                <a class="collapse-item" href="{{ route('welcome.list.admin') }}">Admin</a>
                 <a class="collapse-item" href="{{ route('crud.mentor.index') }}">Mentor</a>
-                <a class="collapse-item" href="#">Peserta</a>
+                <a class="collapse-item" href="{{ route('welcome.list.peserta') }}">Peserta</a>
             </div>
         </div>
     </li>
@@ -28,7 +28,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori Bootcamp</a>
                 <a class="collapse-item" href="{{ route('bootcamp.index') }}">Kelas Bootcamp</a>
-                <a class="collapse-item" href="#">Transaksi</a>
+                <a class="collapse-item" href="{{ route('transaksi.index') }}">Transaksi</a>
             </div>
         </div>
     </li>
