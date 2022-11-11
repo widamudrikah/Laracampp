@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'blokir',
         'images',
     ];
 
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function peserta()
     {
         return $this->hasOne(Peserta::class,'user_id','id');
+    }
+
+    public function bootcamps()
+    {
+        return $this->hasMany(Bootcamp::class,'mentor_id','id');
     }
 }

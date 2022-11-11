@@ -1,46 +1,48 @@
 @extends('front.base')
 
-@section('title','Semua Bootcamps Di Laracamp')
+@section('title','My Dashboard')
 
 @section('content')
 
-    <!-- Dashboard -->
+ <!-- Dashboard -->
     <section class="container dashboard">
-        <div class="text-center">
-            <span>BOOTCAMPS</span>
-            <h2>{{ $title }}</h2>
-        </div>        
+        <span>DASHBOARD</span>
+        <h2>My Bootcamps</h2>
 
         <!-- List Table My Bootcamp -->
         <div class="table-responsive">
             <table class="table table-borderless">
                 <tbody>
-                    @forelse($bootcamp as $row)
+
+                    @forelse($trx as $row)
                         <tr>
                             <td class="td-img">
-                                <img style="width: 180px; height:120px; border-radius:20px;" src="{{ asset('storage/'.$row->thumbnail) }}" alt="{{ $row->nama_bootcamp }}">
+                                <img style="width: 180px; height:120px; border-radius:20px;" src="{{ asset('storage/'.$row->bootcamp->thumbnail) }}" alt="{{ $row->nama_bootcamp }}">
                             </td>
                             <td class="td-bootcamp">
                                 <div class="desc">
-                                    <p class="name">{{ $row->nama_bootcamp }}</p>
+                                    <p class="name">{{ $row->bootcamp->nama_bootcamp }}</p>
                                     <!-- <p class="date">September 24, 2021</p> -->
-                                    <p class="date">Mentor: {{ $row->mentor->name }}</p>
+                                    <p class="date">Mentor: {{ $row->bootcamp->mentor->name }}</p>
                                 </div>
                             </td> 
-                            <td class="td-price">Rp <?php echo number_format($row->harga) ?></td>
+                            <td class="td-price">Rp <?php echo number_format($row->bootcamp->harga) ?></td>
 
-                            <td class="td-status" @if($row->status == 1) style="color: #31B380;" @else style="color: #f75151;" @endif>
+                            <td class="td-status">
                                 @if($row->status == 1)
-                                 Tersedia
-                                @else
-                                 Penuh
+                                    Success
+                                @elseif($row->status == 2)
+                                    Waiting for Payment
+                                @elseif($row->status == 3)
+                                    Canceled
                                 @endif
                             </td>
 
+                            @if(Auth::user()->role == 3)
                             <td class="td-invoice">
-                                <a href="{{ route('front.detail.bootcamp',$row->slug) }}" class="btn btn-primary">Detail</a>
+                                <a href="#" class="btn btn-primary">View Invoice</a>
                             </td>
-                            
+                            @endif
                         </tr>
                     @empty
                     <tr>
@@ -48,7 +50,8 @@
                             Data bootcamp belum tersedia !
                         </td>
                     </tr>
-                    @endforelse                    
+                    @endforelse 
+
                 </tbody>
             </table>
         </div>

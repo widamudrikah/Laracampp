@@ -41,8 +41,17 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="mb-3 inputan">
+                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" id="name" aria-describedby="emailHelp">
+                        @error('name')
+                            <div id="name" class="form-text error invalid-feedback" role="alert">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3 inputan">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control  @error('username') is-invalid @enderror" name="name" id="username" aria-describedby="emailHelp">
+                        <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username" id="username" aria-describedby="emailHelp">
                         @error('username')
                             <div id="username" class="form-text error invalid-feedback" role="alert">
                                 {{ $message }}

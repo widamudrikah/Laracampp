@@ -39,8 +39,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-3 inputan">
-                        <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">                        
+                        <label for="exampleInputEmail1" class="form-label">Email atau Username</label>
+                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">                        
                         @error('email')
                             <div id="emailHelp" role="alert" class="form-text error invalid-feedback">
                                 {{ $message }}

@@ -56,7 +56,7 @@
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Mentor</a>
+                            <a class="nav-link" href="{{ route('front.mentor.bootcamp') }}">Mentor</a>
                         </li>
 
                         <!-- <li class="nav-item">
@@ -93,7 +93,8 @@
                                 @elseif(Auth::user()->role == 2)
                                     <li><a class="dropdown-item" href="{{ route('mentor.index') }}">My Dashboard</a></li>
                                 @elseif(Auth::user()->role == 3)
-                                    <li><a class="dropdown-item" href="{{ route('peserta.index') }}">My Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('front.my.dashboard') }}">My Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('peserta.index') }}">My Profile</a></li>
                                 @endif                               
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

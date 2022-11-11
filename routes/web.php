@@ -21,6 +21,9 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/bootcamps/detail/{slug}', 'detail_bootcamp')->name('front.detail.bootcamp');
     Route::get('/bootcamps/kategori/{slug}', 'kategori_bootcamp')->name('front.kategori.bootcamp');
     Route::post('/bootcamps/register', 'daftar_bootcamp')->name('front.daftar.bootcamp');
+    Route::get('/bootcamps/mentor', 'mentor_bootcamp')->name('front.mentor.bootcamp');
+    Route::get('/bootcamps/mentor/kelas/{username}', 'kelas_mentor_bootcamp')->name('front.kelas.mentor.bootcamp');
+    Route::get('/bootcamps/my_dashboard', 'my_dashboard')->middleware('auth')->name('front.my.dashboard');
 });
 // End Akses Tamu
 

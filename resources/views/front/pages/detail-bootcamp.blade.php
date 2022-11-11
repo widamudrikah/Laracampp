@@ -35,7 +35,7 @@
                     @csrf
 
                     <input type="hidden" value="{{ $bootcamp->id }}" name="bootcamp_id">
-                    <input type="hidden" value="{{ Auth::user()->peserta->id }}" name="peserta_id">
+                    {{-- <inputtype="hidden"value="{{ Auth::user()->peserta->id }}" name="peserta_id"> --}}
                     <input type="hidden" value="{{ $bootcamp->harga }}" name="harga">
 
                     <div class="mb-3 inputan">
