@@ -42,7 +42,8 @@
                             <td>{{ $row->username }}</td>
                             <td>{{ $row->email }}</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#delete{{ $row->id }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                                <!-- <a href="#" data-toggle="modal" data-target="#delete{{ $row->id }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a> -->
+                                <a href="{{ route('crud.mentor.hapus', $row->id) }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         @endforeach

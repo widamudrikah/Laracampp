@@ -67,6 +67,11 @@ class FrontController extends Controller
         $transaksi->kode_unik   = mt_rand(100,999);
         $transaksi->save();
 
+        // Kurangi Kuota Kelas
+        $kuota                  = Bootcamp::findOrFail($request->bootcamp_id);
+        $kuota->kuota           = $kuota->kuota - 1;
+        $kuota->update();
+
         return redirect()->route('peserta.success');
     }
 

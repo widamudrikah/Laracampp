@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bootcamp;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 class BootcampApiController extends Controller
 {
@@ -27,6 +31,41 @@ class BootcampApiController extends Controller
         return $this->result($bootcamp);
     }
 
+    public function addBootcamp(Request $request)
+    {
+        $validasi = Validator::make($request->all(), [
+                'kategori_id'       => 'required',
+                'mentor_id'         => 'required',
+                'nama_bootcamp'     => 'required|unique:bootcamps',
+                'harga'             => 'required|numeric',
+                'deskripsi'         => 'required',
+                'thumbnail'         => 'required',
+                'kuota'             => 'required',
+        ]);
+
+        if($validasi->fails()){
+            $valIndex = $validasi->errors()->all();
+            return $this->errorWoy(false, $valIndex[0]);
+        }
+       $bootcamps = Bootcamp::create([
+            'kategori_id'       => $request->kategori_id,
+            'mentor_id'         => $request->mentor_id,
+            'nama_bootcamp'     => $request->nama_bootcamp,
+            'slug'              => Str::slug($request->nama_bootcamp),
+            'harga'             => $request->harga,
+            'deskripsi'         => $request->deskripsi,
+            'thumbnail'         => $request->file('thumbnail')->store('img-bootcamp'),
+            'kuota'             => $request->kuota,
+        ]);
+        $bootcamp = Bootcamp::where('id',$bootcamps->id)
+                    ->get()
+                    ->map(function ($bootcamp){
+                        return $this->format($bootcamp);
+                    });
+
+        return $this->result($bootcamp);
+    }
+
     public function format($bootcamp)
     {
         return [
@@ -39,6 +78,7 @@ class BootcampApiController extends Controller
             'image'     => $bootcamp->thumbnail,
             'status'    => $bootcamp->status,
             'kuota'     => $bootcamp->kuota,
+            // 'terbuat'    =>Carbon::parse($bootcamp->created_at)->translatedFormat('d F Y'),
         ];
     }
 
@@ -46,7 +86,16 @@ class BootcampApiController extends Controller
     {
         return response()->json([
             'status'    => true,
+            'msg'       =>"Berhasil mendapatkan Bootcamp",
             'data'      => $bootcamp,
+        ], 200);
+    }
+
+    public function errorWoy($status, $message)
+    {
+        return response()->json([
+            'status'        => $status,
+            'messages'      => $message,
         ], 200);
     }
 }

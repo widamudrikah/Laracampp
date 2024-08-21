@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Mentor\MentorController;
 use App\Http\Controllers\Peserta\PesertaController;
 use App\Http\Controllers\Template\DashboardController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +24,11 @@ Route::controller(FrontController::class)->group(function(){
     Route::post('/bootcamps/register', 'daftar_bootcamp')->name('front.daftar.bootcamp');
     Route::get('/bootcamps/mentor', 'mentor_bootcamp')->name('front.mentor.bootcamp');
     Route::get('/bootcamps/mentor/kelas/{username}', 'kelas_mentor_bootcamp')->name('front.kelas.mentor.bootcamp');
-    Route::get('/bootcamps/my_dashboard', 'my_dashboard')->middleware('auth')->name('front.my.dashboard');
+    Route::get('/bootcamps/my_dashboard', 'my_dashboard')->middleware(['auth', 'verified'])->name('front.my.dashboard');
 });
 // End Akses Tamu
 
-Auth::routes();
+Auth::routes(['verify' => true]);       //verivikasi email, harus ditambahin
 
 // Akses Admin = 1
 Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
@@ -36,6 +37,7 @@ Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('admin', 'list_admin')->name('welcome.list.admin');
         Route::get('peserta', 'list_peserta')->name('welcome.list.peserta');
     });
+    
     Route::controller(KategoriController::class)->group(function(){
         Route::get('kategori', 'index')->name('kategori.index');
         Route::post('kategori/store', 'store')->name('kategori.store');
@@ -52,6 +54,7 @@ Route::prefix('a')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('mentor', 'index')->name('crud.mentor.index');
         Route::get('mentor/baru', 'create')->name('crud.mentor.create');
         Route::post('mentor/store', 'store')->name('crud.mentor.store');
+        Route::get('mentor/hapus/{id}', 'hapusMentor')->name('crud.mentor.hapus');
     });
     Route::controller(TransaksiController::class)->group(function(){
         Route::get('transaksi', 'index')->name('transaksi.index');
@@ -81,6 +84,23 @@ Route::prefix('p')->middleware(['auth','isPeserta','blokir'])->group(function(){
 });
 // End Akses Peserta
 
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
+
+
+//Route Belajar Get Data Api Yang Methodnya GET dari api luar
+// Route::get('/doa_harian', [App\Http\Controllers\Api\AdditionalController::class, 'getDoa']);
+// Route::get('/surah', [App\Http\Controllers\Api\AdditionalController::class, 'surah']);
+
+// Route::get('/registrasi', [App\Http\Controllers\Api\AdditionalController::class, 'regis']);
+// Route::post('/proses-regis', [App\Http\Controllers\Api\AdditionalController::class, 'prosesRegis'])->name('regis');
+
+// Route::get('/signin', [App\Http\Controllers\Api\AdditionalController::class, 'login']);
+
+Route::get('/chart', [App\Http\Controllers\Api\AdditionalController::class, 'chart']);
+Route::get('/chart2', [App\Http\Controllers\Api\AdditionalController::class, 'chart2']);
+Route::get('/chart3', [App\Http\Controllers\Api\AdditionalController::class, 'chart3']);
 
 
 
@@ -88,4 +108,5 @@ Route::prefix('p')->middleware(['auth','isPeserta','blokir'])->group(function(){
 //     return view('welcome');
 // });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

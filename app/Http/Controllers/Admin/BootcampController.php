@@ -17,6 +17,7 @@ class BootcampController extends Controller
     public function index()
     {
         // $bootcamp = Bootcamp::with('kategori')->get();
+        
         $bootcamp = Bootcamp::all();
         return view('template.pages.bootcamp',[
             'bootcamp'  => $bootcamp,
